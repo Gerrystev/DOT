@@ -26,7 +26,7 @@ class CitySearchTest extends TestCase
         return $response->getData()->authorization->type . ' ' . $response->getData()->authorization->token;
     }
 
-    private function searchCityWithUser($username, $password, $search_province=0, $search_city=0, $id=1)
+    private function searchCityWithUser($username, $password, $search_province=0, $search_city=0, $id=1, $api=false)
     {
         $user = User::factory()->create([
             'username' => $username,
@@ -40,13 +40,23 @@ class CitySearchTest extends TestCase
             'password' => $password,
         ]);
 
-        $response = $this->getJson(
+        if ($api) {
+            $response = $this->getJson(
+                '/api/search/cities-api?id=' . $id,
+                [
+                    'Accept' => 'application/json',
+                    'Authorization' => $auth,
+                ]
+            );
+        } else{
+            $response = $this->getJson(
                 '/api/search/cities?id=' . $id,
                 [
                     'Accept' => 'application/json',
                     'Authorization' => $auth,
                 ]
-        );
+            );
+        }
 
         $res= User::where('username', $username)->delete();
 
@@ -73,6 +83,21 @@ class CitySearchTest extends TestCase
                     'type',
                     'city_name',
                     'postal_code',
+                ],
+            ]);
+    }
+
+    public function test_user_a_can_search_cities_with_api()
+    {
+        $response = $this->searchCityWithUser('adminA', 'A12345', 1, 1, true);
+
+        $response
+            ->assertHeader('content-type', 'application/json')
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'data' => [
+                    'province_id',
+                    'province',
                 ],
             ]);
     }

@@ -38,4 +38,36 @@ class CityController extends Controller
             throw new HttpException(404, 'Not Found');
         }
     }
+
+    public function getCitiesByIdApi(Request $request) 
+    {
+        $id = $request->id;
+        $credential = $request->user();
+        
+        $this->isAuthorized($credential);
+        
+        // Get data from request API
+        $headers = [
+            'key' => \config('rajaongkir.url')
+        ];
+        
+        $client = new GuzzleClient([
+            'verify' => false,
+            'headers' => $headers
+        ]);
+        
+        $r = $client->request('GET', 'https://api.rajaongkir.com/starter/city?id='.$id);
+        $response = json_decode($r->getBody()->getContents());
+
+        $result = $response->rajaongkir->results;
+        $res = json_decode(json_encode($result), true);
+
+        if(count($res) < 1) {
+            throw new HttpException(404, 'Not Found');
+        }
+
+        return response()->json([
+            "data" => $data,
+        ]);
+    }
 }

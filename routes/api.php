@@ -36,5 +36,7 @@ Route::group(
     ],
 function ($router) {
     Route::get('/provinces', 'ProvinceController@getProvinceById');
+    Route::get('/provinces-api', 'ProvinceController@getProvinceByIdApi');
     Route::get('/cities', 'CityController@getCitiesById');
+    Route::get('/cities-api', 'CityController@getCitiesByIdApi');
 });

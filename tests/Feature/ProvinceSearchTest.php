@@ -26,7 +26,7 @@ class ProvinceSearchTest extends TestCase
         return $response->getData()->authorization->type . ' ' . $response->getData()->authorization->token;
     }
 
-    private function searchProvinceWithUser($username, $password, $search_province=0, $search_city=0, $id=1)
+    private function searchProvinceWithUser($username, $password, $search_province=0, $search_city=0, $id=1, $api=false)
     {
         $user = User::factory()->create([
             'username' => $username,
@@ -40,13 +40,23 @@ class ProvinceSearchTest extends TestCase
             'password' => $password,
         ]);
 
-        $response = $this->getJson(
+        if ($api) {
+            $response = $this->getJson(
+                '/api/search/provinces-api?id=' . $id,
+                [
+                    'Accept' => 'application/json',
+                    'Authorization' => $auth,
+                ]
+            );
+        } else {
+            $response = $this->getJson(
                 '/api/search/provinces?id=' . $id,
                 [
                     'Accept' => 'application/json',
                     'Authorization' => $auth,
                 ]
-        );
+            );
+        }
 
         $res= User::where('username', $username)->delete();
 
@@ -61,6 +71,21 @@ class ProvinceSearchTest extends TestCase
     public function test_user_a_can_search_provinces()
     {
         $response = $this->searchProvinceWithUser('adminA', 'A12345', 1, 1);
+
+        $response
+            ->assertHeader('content-type', 'application/json')
+            ->assertStatus(200)
+            ->assertJsonStructure([
+                'data' => [
+                    'province_id',
+                    'province',
+                ],
+            ]);
+    }
+
+    public function test_user_a_can_search_provinces_with_api()
+    {
+        $response = $this->searchProvinceWithUser('adminA', 'A12345', 1, 1, true);
 
         $response
             ->assertHeader('content-type', 'application/json')
