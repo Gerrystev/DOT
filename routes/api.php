@@ -18,6 +18,20 @@ Route::group(
     [
         'middleware' => 'api',
         'namespace' => 'App\Http\Controllers',
+        'prefix' => 'auth'
+    ],
+function ($router) {
+    // Public access routing
+    Route::post('/login', 'AuthController@login');
+    Route::post('/register', 'AuthController@register');
+    Route::post('/logout', 'AuthController@logout');
+    Route::post('/refresh', 'AuthController@refresh');
+});
+
+Route::group(
+    [
+        'middleware' => 'api',
+        'namespace' => 'App\Http\Controllers',
         'prefix' => 'search'
     ],
 function ($router) {
