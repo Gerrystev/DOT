@@ -14,11 +14,26 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        \App\Models\User::factory()
+        ->count(3)
+        ->state(new Sequence(
+            [
+                'username' => 'adminA',
+                'password' => Hash::make('A12345'),
+                'search_province' => 1,
+                'search_city' => 1,
+            ],
+            [
+                'username' => 'adminB',
+                'password' => Hash::make('B12345'),
+                'search_province' => 1,
+            ],
+            [
+                'username' => 'adminC',
+                'password' => Hash::make('C12345'),
+                'search_city' => 1,
+            ],
+        ))
+        ->create();
     }
 }
