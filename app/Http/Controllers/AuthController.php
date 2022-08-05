@@ -22,28 +22,28 @@ class AuthController extends Controller
             $request->all(),
             [
                 'username' => 'required|string',
-                'password' => 'required|string|',
+                'password' => 'required|string',
             ]
         );
 
         if($validator->fails()){
-            throw new HttpException(400, $validator->errors());
+            $err = json_decode($validator->errors());
+            return response()->json($err, 400);
         }
 
         $credentials = $request->only('username', 'password');
 
         $token = Auth::attempt($credentials);
         if (!$token) {
-            throw new HttpException(403, 'Username or password wrong!');
+            throw new HttpException(403, 'Username or password wrong');
         }
 
         $user = Auth::user();
         return response()->json([
-            'status' => 'success',
             'user' => $user,
-            'authorisation' => [
+            'authorization' => [
                 'token' => $token,
-                'type' => 'bearer',
+                'type' => 'Bearer',
             ]
         ]);
     }
@@ -58,22 +58,24 @@ class AuthController extends Controller
         );
 
         if($validator->fails()){
-            throw new HttpException(400, $validator->errors());  
+            $err = json_decode($validator->errors());
+            return response()->json($err, 400);
         }
 
         $user = User::create([
             'username' => $request->username,
             'password' => Hash::make($request->password),
+            'search_province' => $request->search_province ?? 0,
+            'search_city' => $request->search_city ?? 0,
         ]);
 
         $token = Auth::login($user);
         return response()->json([
-            'status' => 'success',
             'message' => 'User created successfully',
             'user' => $user,
-            'authorisation' => [
+            'authorization' => [
                 'token' => $token,
-                'type' => 'bearer',
+                'type' => 'Bearer',
             ]
         ]);
     }
@@ -82,7 +84,6 @@ class AuthController extends Controller
     {
         Auth::logout();
         return response()->json([
-            'status' => 'success',
             'message' => 'Successfully logged out',
         ]);
     }
@@ -90,11 +91,10 @@ class AuthController extends Controller
     public function refresh()
     {
         return response()->json([
-            'status' => 'success',
             'user' => Auth::user(),
-            'authorisation' => [
+            'authorization' => [
                 'token' => Auth::refresh(),
-                'type' => 'bearer',
+                'type' => 'Bearer',
             ]
         ]);
     }
