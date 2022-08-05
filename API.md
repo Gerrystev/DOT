@@ -30,7 +30,7 @@ Accept	: application/json <br />
 |Search Cities		|Apakah Terotorisasi untuk mencari kota	   |0|
 
 **Success JSON Response** <br />
-![register](https://github.com/Gerrystev/DOT/blob/main/asset/register.png?raw=true)
+![register](https://github.com/Gerrystev/DOT/blob/sprint2/asset/register.png?raw=true)
 
 ### Login<a name="login"/>
 Digunakan untuk user yang sudah terdaftar untuk login <br />
@@ -48,7 +48,7 @@ Accept	: application/json <br />
 |password     		|Password, Min 6 huruf | NOT NULL |
 
 **Success JSON Response** <br />
-![login](https://github.com/Gerrystev/DOT/blob/main/asset/login.png?raw=true)
+![login](https://github.com/Gerrystev/DOT/blob/sprint2/asset/login.png?raw=true)
 
 ### Refresh Token<a name="refresh"/>
 Digunakan untuk refresh bearer token<br />
@@ -69,7 +69,7 @@ Authorization	: bearer_token <br />
 |Search Cities		|Apakah Terotorisasi untuk mencari kota	   |0|
 
 **Success JSON Response** <br />
-![refresh](https://github.com/Gerrystev/DOT/blob/main/asset/refresh.png?raw=true)
+![refresh](https://github.com/Gerrystev/DOT/blob/sprint2/asset/refresh.png?raw=true)
 
 ### Logout<a name="logout"/>
 Digunakan untuk user logout<br />
@@ -82,7 +82,7 @@ Accept	: application/json <br />
 Authorization	: bearer_token <br />
 
 **Success JSON Response** <br />
-![logout](https://github.com/Gerrystev/DOT/blob/main/asset/logout.png?raw=true)
+![logout](https://github.com/Gerrystev/DOT/blob/main/sprint2/logout.png?raw=true)
 
 ## Search Provinces<a name="search-provinces"/>
 Digunakan untuk mencari provinsi bagi user yang terotorisasi.
@@ -100,7 +100,25 @@ Authorization	: bearer_token <br />
 |id			|id provinsi yang ingin dicari, NOT NULL      |
 
 **Success JSON Response** <br />
-![provinces](https://github.com/Gerrystev/DOT/blob/main/asset/provinces.png?raw=true)
+![provinces](https://github.com/Gerrystev/DOT/blob/sprint2/asset/provinces.png?raw=true)
+
+## Search Provinces with Rajaongkir API
+Digunakan untuk mencari provinsi bagi user yang terotorisasi menggunakan rajaongkir api.
+
+**Method**  <br />
+GET http://127.0.0.1:8000/api/search/provinces-api? <parameter\><br />
+
+**Header**  <br />
+Accept	: application/json <br />
+Authorization	: bearer_token <br />
+
+**Parameter** 
+|Field Name    |Description             
+|----------------|---------------------|
+|id			|id provinsi yang ingin dicari, NOT NULL      |
+
+**Success JSON Response** <br />
+![provinces](https://github.com/Gerrystev/DOT/blob/sprint2/asset/provinces.png?raw=true)
 
 ## Search Cities<a name="search-cities"/>
 Digunakan untuk mencari kota bagi user yang terotorisasi.
@@ -118,4 +136,22 @@ Authorization	: bearer_token <br />
 |id			|id kotayang ingin dicari, NOT NULL      |
 
 **Success JSON Response** <br />
-![cities](https://github.com/Gerrystev/DOT/blob/main/asset/cities.png?raw=true)
+![cities](https://github.com/Gerrystev/DOT/blob/sprint2/asset/cities.png?raw=true)
+
+## Search Cities with Rajaongkir API
+Digunakan untuk mencari kota bagi user yang terotorisasi menggunakan rajaongkir api.
+
+**Method**  <br />
+GET http://127.0.0.1:8000/api/search/cities-api? <parameter\><br />
+
+**Header**  <br />
+Accept	: application/json <br />
+Authorization	: bearer_token <br />
+
+**Parameter** 
+|Field Name    |Description             
+|----------------|---------------------|
+|id			|id kotayang ingin dicari, NOT NULL      |
+
+**Success JSON Response** <br />
+![cities](https://github.com/Gerrystev/DOT/blob/sprint2/asset/cities.png?raw=true)
