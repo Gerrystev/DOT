@@ -30,7 +30,7 @@ Accept	: application/json <br />
 |Search Cities		|Apakah Terotorisasi untuk mencari kota	   |0|
 
 **Success JSON Response** 
-//success
+![register](https://github.com/Gerrystev/DOT/blob/main/asset/register.png?raw=true)
 
 ### Login<a name="login"/>
 Digunakan untuk user yang sudah terdaftar untuk login <br />
@@ -48,7 +48,7 @@ Accept	: application/json <br />
 |password     		|Password, Min 6 huruf | NOT NULL |
 
 **Success JSON Response** 
-//success
+![login](https://github.com/Gerrystev/DOT/blob/main/asset/login.png?raw=true)
 
 ### Refresh Token<a name="refresh"/>
 Digunakan untuk refresh bearer token<br />
@@ -69,7 +69,7 @@ Authorization	: bearer_token <br />
 |Search Cities		|Apakah Terotorisasi untuk mencari kota	   |0|
 
 **Success JSON Response** 
-//success
+![refresh](https://github.com/Gerrystev/DOT/blob/main/asset/refresh.png?raw=true)
 
 ### Logout<a name="logout"/>
 Digunakan untuk user logout<br />
@@ -80,6 +80,9 @@ POST http://127.0.0.1:8000/api/auth/logout<br />
 **Header**  <br />
 Accept	: application/json <br />
 Authorization	: bearer_token <br />
+
+**Success JSON Response** 
+![logout](https://github.com/Gerrystev/DOT/blob/main/asset/logout.png?raw=true)
 
 ## Search Provinces<a name="search-provinces"/>
 Digunakan untuk mencari provinsi bagi user yang terotorisasi.
@@ -97,7 +100,7 @@ Authorization	: bearer_token <br />
 |id			|id provinsi yang ingin dicari, NOT NULL      |
 
 **Success JSON Response** 
-//success
+![provinces](https://github.com/Gerrystev/DOT/blob/main/asset/provinces.png?raw=true)
 
 ## Search Cities<a name="search-cities"/>
 Digunakan untuk mencari kota bagi user yang terotorisasi.
@@ -115,4 +118,4 @@ Authorization	: bearer_token <br />
 |id			|id kotayang ingin dicari, NOT NULL      |
 
 **Success JSON Response** 
-//success
+![cities](https://github.com/Gerrystev/DOT/blob/main/asset/cities.png?raw=true)
