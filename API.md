@@ -19,7 +19,7 @@ Accept	: application/json <br />
 |id			|id provinsi yang ingin dicari, NOT NULL      |
 
 **Success JSON Response** <br />
-![provinces](https://github.com/Gerrystev/DOT/blob/main/asset/provinces.png?raw=true)
+![provinces](https://github.com/Gerrystev/DOT/blob/sprint1/asset/provinces.png?raw=true)
 
 ## Search Cities<a name="search-cities"/>
 Digunakan untuk mencari kota.
@@ -36,4 +36,4 @@ Accept	: application/json <br />
 |id			|id kota yang ingin dicari, NOT NULL      |
 
 **Success JSON Response** <br />
-![cities](https://github.com/Gerrystev/DOT/blob/main/asset/cities.png?raw=true)
+![cities](https://github.com/Gerrystev/DOT/blob/sprint1/asset/cities.png?raw=true)
